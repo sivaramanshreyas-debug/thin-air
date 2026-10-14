@@ -6,7 +6,9 @@ A Flappy Bird–style jetpack shooter that runs in the browser. A brick-built he
 
 ## How it plays
 
-- **The jetpack climbs on its own.** You steer left and right, and the blaster fires automatically.
+- **The jetpack climbs on its own.** You steer left and right. Hit nitro to climb much faster (it burns fuel quickly), or brake to slow down, save fuel and buy time to dodge.
+- **The blaster fires by itself, but only when there's something to shoot** ahead of you.
+- **Rival jetpackers want you out of the sky.** Some swoop in from above, track you, flash a `!` and dive. Higher up, others rocket up from below after a warning marker. Shoot the ones above you; dodge the ones coming from below.
 - **Some things you shoot, some you dodge.** Birds, planes and ion gates are dodge-only. Balloons pop, meteors split, satellites take three hits, and asteroids split twice.
 - **Fuel drains as you fly.** Refill cans appear more often the emptier your tank gets. Run dry and you start to fall, with one last chance to catch a can before you drop off the screen.
 - **One hit and the run ends.** Your score is distance climbed plus everything you shoot down.
@@ -29,7 +31,9 @@ A Flappy Bird–style jetpack shooter that runs in the browser. A brick-built he
 | Action | Keyboard | Touch |
 | --- | --- | --- |
 | Launch / retry | Space, Enter, W or ↑ | Tap |
-| Steer | A / D or ← / → | Drag anywhere |
+| Steer | A / D or ← / → | Drag left / right |
+| Nitro (fast climb, burns fuel) | W or ↑ | While dragging, drag up |
+| Brake (slow climb, saves fuel) | S or ↓ | While dragging, drag down |
 | Pause | P or Esc | Pause button (top right) |
 | Sound on/off | M | Speaker button (top right) |
 
@@ -40,8 +44,9 @@ A Flappy Bird–style jetpack shooter that runs in the browser. A brick-built he
 Everything lives in `index.html`:
 
 - `LAYERS`: each layer's name, altitude range, sky gradient, sun position and effects (stars, clouds, aurora, Earth)
-- `spawnLayer`: which obstacles appear in each layer and how often
-- `updatePlay`: fuel drain, climb speed and the fuel-can spawn chance
+- `spawnLayer`: which obstacles appear in each layer and how often, plus how often rival jetpackers attack
+- `rival`: how rivals track, aim and dive
+- `updatePlay`: fuel drain, nitro and brake strength, climb speed and the fuel-can spawn chance
 - `spawnBoss` / `updateBoss`: mothership health and attack patterns
 
 The screen is a 180×320 canvas. All art is drawn in code and the sound effects are synthesised with the Web Audio API.
